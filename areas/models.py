@@ -23,4 +23,4 @@ class ServiceArea(models.Model):
         on_delete=models.CASCADE,
     )
 
-
+    # TODO: индекс

@@ -28,6 +28,7 @@ router.register(r'providers', views.ProviderViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'api/', include(router.urls)),
+    path('api/', include(router.urls)),
+    path('api1/', views.ProvidersApiView.as_view()),
 ]
 

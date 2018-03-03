@@ -1,16 +1,13 @@
-from django.shortcuts import render
-
-from rest_framework import viewsets
-from rest_framework import serializers
-#from areas.serializers import UserSerializer, GroupSerializer
+from rest_framework import viewsets, serializers, generics
+from django_filters import rest_framework as filters
 
 from areas.models import Provider, ServiceArea
 
 
-class ProviderSerializer(serializers.HyperlinkedModelSerializer):
+class ProviderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Provider
-        fields = ('name', 'email', 'phone', 'central_office')
+        fields = '__all__'
 
 
 
@@ -20,3 +17,17 @@ class ProviderViewSet(viewsets.ModelViewSet):
     '''
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = '__all__'
+
+
+class ProvidersApiView(generics.ListAPIView):
+    '''
+        API Поставщиков.
+    '''
+    queryset = Provider.objects.all()
+    serializer_class = ProviderSerializer
+    filter_backends = (filters.OrderingFilter,)
+    filter_fields = '__all__'
+    ordering_fields = '__all__'
+    ordering = 'name'

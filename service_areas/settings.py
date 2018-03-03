@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'areas.apps.AreasConfig',
     'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -74,11 +75,12 @@ WSGI_APPLICATION = 'service_areas.wsgi.application'
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
 }
 
 
@@ -88,7 +90,7 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'areas',
         'USER': 'postgres',
         'PASSWORD': '1',
         'HOST': '127.0.0.1',

@@ -8,16 +8,14 @@ class Provider(models.Model):
     central_office = models.CharField(max_length=300)
 
 
-
-class ServiceType:
+class ServiceType(models.Model):
     # TODO: many-to-one
     service_type = models.CharField(max_length=25)
-    
-    
-    
+
+
 class ServiceArea(models.Model):
     name = models.CharField(max_length=200)
-    
+
     price = models.DecimalField(max_digits=12, decimal_places=2)
 
     provider = models.ForeignKey(
@@ -38,4 +36,3 @@ class AreasServices(models.Model):
         unique_together = ('area', 'service_type',)
 
     # TODO: индекс
-

@@ -1,7 +1,8 @@
-from rest_framework import viewsets, serializers, generics
-from django_filters import rest_framework as filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import serializers, viewsets
+from rest_framework.filters import OrderingFilter
 
-from areas.models import Provider, ServiceArea
+from areas.models import Provider
 
 
 class ProviderSerializer(serializers.ModelSerializer):
@@ -10,24 +11,22 @@ class ProviderSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class ProviderViewSet(viewsets.ModelViewSet):
-    '''
-        API Поставщиков.
-    '''
+    """
+    API Поставщиков.
+    """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend,)
     filter_fields = '__all__'
 
 
-class ProvidersApiView(generics.ListAPIView):
-    '''
-        API Поставщиков.
-    '''
+class ProvidersApiView(viewsets.ModelViewSet):
+    """
+    API Поставщиков.
+    """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
-    filter_backends = (filters.OrderingFilter,)
+    filter_backends = (OrderingFilter,)
     filter_fields = '__all__'
-    ordering_fields = '__all__'
     ordering = 'name'

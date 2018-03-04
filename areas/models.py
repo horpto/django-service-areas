@@ -9,12 +9,10 @@ class Provider(models.Model):
 
 
 
-class ServiceType:
-    # TODO: many-to-one
+class ServiceType(models.Model):
     service_type = models.CharField(max_length=25)
-    
-    
-    
+
+
 class ServiceArea(models.Model):
     name = models.CharField(max_length=200)
     
@@ -38,4 +36,3 @@ class AreasServices(models.Model):
         unique_together = ('area', 'service_type',)
 
     # TODO: индекс
-

@@ -22,11 +22,8 @@ class ProviderViewSet(viewsets.ModelViewSet):
 
 
 class ProvidersApiView(viewsets.ModelViewSet):
-    """
-    API Поставщиков.
-    """
     queryset = Provider.objects.all()
     serializer_class = ProviderSerializer
-    filter_backends = (OrderingFilter,)
+    filter_backends = (DjangoFilterBackend, OrderingFilter,)
     filter_fields = '__all__'
     ordering = 'name'

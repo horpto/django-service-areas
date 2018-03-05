@@ -4,7 +4,7 @@ from rest_framework import serializers, viewsets
 from rest_framework.filters import OrderingFilter
 
 
-from areas.models import Provider, Service
+from areas.models import Provider, Service, ServiceArea
 
 
 
@@ -42,3 +42,19 @@ class ServiceViewSet(viewsets.ModelViewSet):
     filter_fields = '__all__'
     ordering = 'service_type'
 
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ServiceArea
+        fields = '__all__'
+
+
+class ServiceAreaViewSet(viewsets.ModelViewSet):
+    '''
+    API зон обслуживания
+    '''
+    queryset = ServiceArea.objects.all()
+    serializer_class = ServiceSerializer
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filter_fields = '__all__'
+    ordering = 'name'

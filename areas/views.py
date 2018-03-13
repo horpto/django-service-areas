@@ -33,7 +33,7 @@ class ServiceSerializer(serializers.ModelSerializer):
 
 class ServiceViewSet(viewsets.ModelViewSet):
     '''
-    API услуг    
+    API услуг
     '''
     queryset = Service.objects.all()
     serializer_class = ServiceSerializer
@@ -43,10 +43,11 @@ class ServiceViewSet(viewsets.ModelViewSet):
     ordering = 'service_type'
 
 
-class ServiceSerializer(serializers.ModelSerializer):
+class ServiceAreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceArea
         fields = '__all__'
+
 
 
 class ServiceAreaViewSet(viewsets.ModelViewSet):
@@ -54,7 +55,7 @@ class ServiceAreaViewSet(viewsets.ModelViewSet):
     API зон обслуживания
     '''
     queryset = ServiceArea.objects.all()
-    serializer_class = ServiceSerializer
+    serializer_class = ServiceAreaSerializer
     filter_backends = (DjangoFilterBackend, OrderingFilter)
     filter_fields = '__all__'
     ordering = 'name'

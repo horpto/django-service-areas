@@ -61,3 +61,4 @@ class ServiceAreaViewSet(viewsets.ModelViewSet):
     filter_fields = '__all__'
     ordering = 'name'
     distance_filter_field = 'polygon'
+    distance_filter_convert_meters = True

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.gis.db import models as gis_models
 
 
 class Provider(models.Model):
@@ -28,9 +29,9 @@ class ServiceArea(models.Model):
     '''
     "Зона обслуживания" для служб эксплуатации
     '''
-    name = models.CharField(max_length=200)
-    
+    name = models.CharField(max_length=200)    
     price = models.DecimalField(max_digits=12, decimal_places=2)
+    polygon = gis_models.PolygonField()
 
     provider = models.ForeignKey(
         Provider,

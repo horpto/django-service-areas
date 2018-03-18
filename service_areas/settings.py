@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'areas.apps.AreasConfig',
     'rest_framework',
     'django_filters',
+    'django.contrib.gis',
+    'rest_framework_gis',
+
+    'areas.apps.AreasConfig',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +92,7 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'areas',
         'USER': 'postgres',
         'PASSWORD': '1',
